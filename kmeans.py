@@ -2,10 +2,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 class KMeans:
-    def __init__(self, k=3, max_iters=100):
-        """Initialize KMeans model."""
+    def __init__(self, k=3, max_iters=100, learning_rate=0.5):
+        """Initialize KMeans model with learning rate."""
         self.k = k
         self.max_iters = max_iters
+        self.learning_rate = learning_rate  # Learning rate (0 < learning_rate < 1)
         self.centroids = None
         self.label_mapping = {}
         self.inertia_history = []
@@ -40,22 +41,24 @@ class KMeans:
             # Assign each point to the nearest centroid
             closest_centroids = np.argmin(np.linalg.norm(X[:, np.newaxis] - self.centroids, axis=2), axis=1)
 
-            # Update centroids
+            # Update centroids (with learning rate mechanism)
             new_centroids = np.array([X[closest_centroids == i].mean(axis=0) if X[closest_centroids == i].size else X[np.random.choice(X.shape[0])] for i in range(self.k)])
-            
+
+            # Apply learning rate to smooth centroid update
+            self.centroids = self.centroids * (1 - self.learning_rate) + new_centroids * self.learning_rate
+
             # Compute inertia (sum of squared distances to centroids)
-            inertia = np.sum([np.sum(np.linalg.norm(X[closest_centroids == i] - new_centroids[i], axis=1) ** 2) for i in range(self.k)])
+            inertia = np.sum([np.sum(np.linalg.norm(X[closest_centroids == i] - self.centroids[i], axis=1) ** 2) for i in range(self.k)])
             self.inertia_history.append(inertia)
 
             # Compute centroid movement (Euclidean distance between old and new centroids)
             centroid_movement = np.sum(np.linalg.norm(new_centroids - self.centroids, axis=1))
             self.centroid_movement_history.append(centroid_movement)
-            
-            if np.all(self.centroids == new_centroids):
+
+            # If centroid movement is very small, stop the algorithm
+            if centroid_movement < 1e-6:
                 print(f"Converged at iteration {n}")
                 break
-
-            self.centroids = new_centroids
 
         # Map the predicted labels to true labels using the training set
         train_predictions = self.predict(X)
@@ -111,4 +114,5 @@ class KMeans:
         plt.legend()
 
         plt.tight_layout()
+        plt.savefig("Metrics")
         plt.show()

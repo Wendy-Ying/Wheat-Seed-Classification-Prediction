@@ -30,4 +30,5 @@ def plot_confusion_matrix(y_true, y_pred, title="Confusion Matrix", cmap=plt.cm.
     plt.title(title)
     plt.xlabel('Predicted Label')
     plt.ylabel('True Label')
+    plt.savefig("Confusion_Matrix")
     plt.show()
