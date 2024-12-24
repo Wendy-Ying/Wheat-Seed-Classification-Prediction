@@ -3,6 +3,7 @@ from kmeans import *
 from softkmeans import *
 from pca import *
 from nonlinear import *
+from multi_layer_perceptron import *
 from evaluation import *
 
 # Load and preprocess the dataset
@@ -49,3 +50,11 @@ train_features, train_labels, test_features, test_labels = split_data(load_data(
 # autoencoder_3d.visualize(X_encoded_3d, y, n_components=3)
 # autoencoder_3d.plot_loss(n_components=3)
 
+# multi-layer perceptron
+mlp = MultiLayerPerceptron([7, 64, 80, 32, 10], n_iter=1000, lr=3e-4, batch_size=32)
+mlp.train(train_features, train_labels, test_features, test_labels)
+mlp.plot_loss()
+mlp.plot_weights_and_biases()
+test_predictions = mlp.predict(test_features)
+accuracy_score(test_labels, test_predictions)
+plot_confusion_matrix(test_labels, test_predictions)
