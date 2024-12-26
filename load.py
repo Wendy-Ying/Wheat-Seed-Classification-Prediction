@@ -12,13 +12,17 @@ def shuffle_data(df):
     df = df.sample(frac=1).reset_index(drop=True)
     return df
 
-def split_data_into_features_and_labels(df):
+def split_data_into_features_and_labels():
+    # load the dataset
+    df = load_data()
     # split the dataset into features and labels
     X = df.iloc[:, :-1].values
     y = df.iloc[:, -1].values
     return X, y
 
-def split_data(df):
+def split_data():
+    # load the dataset
+    df = load_data()
     # split the dataset into training and testing sets
     train_size = int(0.8 * len(df))
     train_data = df[:train_size]

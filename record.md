@@ -37,3 +37,21 @@ Epoch 920/1000, Train Loss: 0.1840, Test Loss: 0.2092
 Epoch 960/1000, Train Loss: 0.1823, Test Loss: 0.2157
 Epoch 1000/1000, Train Loss: 0.1776, Test Loss: 0.2115
 Accuracy: 0.9523809523809523
+
+## pca, nonlinear autoencoder and kmeans++, softkmeans
+
+### pca and kmeans++
+Converged at iteration 40
+Accuracy: 0.9285714285714286
+
+### pca and softkmeans
+Converged at iteration 38
+Accuracy: 0.9285714285714286
+
+### nonlinear autoencoder and kmeans++
+Converged at iteration 35
+Accuracy: 0.9523809523809523
+
+### nonlinear autoencoder and softkmeans
+Converged at iteration 52
+Accuracy: 0.9285714285714286
