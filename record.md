@@ -1,3 +1,5 @@
+# 3 class problem
+
 ## kmeans++
 
 Converged at iteration 25
@@ -55,3 +57,41 @@ Accuracy: 0.9523809523809523
 ### nonlinear autoencoder and softkmeans
 Converged at iteration 52
 Accuracy: 0.9285714285714286
+
+## svm
+
+### linear kernal
+Early stopping at iteration 6985
+Early stopping at iteration 11750
+Early stopping at iteration 18295
+Accuracy: 0.9047619047619048
+
+### gaussian kernal
+Early stopping at iteration 2496
+Early stopping at iteration 2590
+Early stopping at iteration 3102
+Accuracy: 0.9523809523809523
+
+## adaptive boosting
+Accuracy: 0.9285714285714286
+
+
+# binary problem
+
+## Removing class: 3
+mlp: 1.0
+svm linear: 0.9285714285714286
+svm gaussian: 0.9642857142857143
+adaboost: 0.9642857142857143
+
+## Removing class: 2
+mlp: 0.9285714285714286
+svm linear: 0.9285714285714286
+svm gaussian: 0.9285714285714286
+adaboost: 0.9642857142857143
+
+## Removing class: 1
+mlp: 1.0
+svm linear: 1.0
+svm gaussian: 1.0
+adaboost: 1.0

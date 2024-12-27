@@ -136,9 +136,9 @@ class MultiLayerPerceptron:
             self.train_loss_history.append(train_loss)
             self.test_loss_history.append(test_loss)
             
-            # Print progress
-            if (epoch + 1) % 40 == 0 or epoch == 0:
-                print(f"Epoch {epoch + 1}/{self.n_iter}, Train Loss: {train_loss:.4f}, Test Loss: {test_loss:.4f}")
+            # # Print progress
+            # if (epoch + 1) % 40 == 0 or epoch == 0:
+            #     print(f"Epoch {epoch + 1}/{self.n_iter}, Train Loss: {train_loss:.4f}, Test Loss: {test_loss:.4f}")
             
             self.lr = 0.999 * self.lr
             
